@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:host{
+   margin: 0;
+}
+
+.add-icon {
+    background: coral;
+    margin-right: 1.5rem;
+}
+
+
+.menu-bar {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    margin: 0;
+    justify-content: right;
+}

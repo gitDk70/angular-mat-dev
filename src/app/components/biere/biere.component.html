@@ -1,0 +1,55 @@
+<div>
+    <div class="thead">
+    </div>
+    <mat-form-field>
+        <input matInput placeholder="Rechercher" #input (keyup)="searchBiere(input.value)">
+    </mat-form-field>
+    <mat-table mat-table class="list-container mat-elevation-z2" matSort [dataSource]="dataSource">
+                
+                <ng-container matColumnDef="image">
+                  
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell">Image</mat-header-cell>
+                    <mat-cell *matCellDef="let biere"> <img mat-card-image src="{{biere.image}}"></mat-cell>
+                    
+                </ng-container>
+          
+              <!-- le nom -->
+              <ng-container matColumnDef="nom">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell">Nom</mat-header-cell>
+                  <mat-cell *matCellDef="let biere">{{biere.nom}}</mat-cell>
+               </ng-container>
+          
+               <!-- la brasserie -->
+              <ng-container matColumnDef="brasserie">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell">Brasserie</mat-header-cell>
+                  <mat-cell *matCellDef="let biere">{{biere.brasserie}}</mat-cell>
+               </ng-container>
+          
+               <!-- Date ajout -->
+              <ng-container matColumnDef="date_ajout">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell">Date d'ajout</mat-header-cell>
+                  <mat-cell *matCellDef="let biere">{{biere.date_ajout}}</mat-cell>
+               </ng-container>
+          
+               <!-- Date modif -->
+              <ng-container matColumnDef="date_modif">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell">Date de modification</mat-header-cell>
+                  <mat-cell *matCellDef="let biere">{{biere.date_modif}}</mat-cell>
+               </ng-container>
+
+              <ng-container matColumnDef="update">
+                  <mat-header-cell *matHeaderCellDef  class="header-cell"></mat-header-cell>
+                  <mat-cell *matCellDef="let biere"><button (click)="editBiere(biere.id_biere)" mat-icon-button color="primary"> <mat-icon>update</mat-icon></button></mat-cell>
+               </ng-container>
+               
+              
+                 
+              
+               <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+               <!-- <mat-row   *matRowDef="let biere" (dblclick)="editBiere(biere.id_biere)" *matRowDef="let row; columns: displayedColumns"></mat-row> -->
+               <mat-row   *matRowDef="let biere; columns: displayedColumns" (dblclick)="editBiere(biere)" ></mat-row>
+             </mat-table>
+
+          
+             <mat-paginator [length]="bieresCount" [pageSize]="3" [pageSizeOptions]="[3,5,10]"></mat-paginator>
+</div>

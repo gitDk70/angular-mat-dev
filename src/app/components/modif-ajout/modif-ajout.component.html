@@ -1,0 +1,33 @@
+<!-- ref.:https://material.angular.io/components/input/examples -->
+        
+<div class="form-container">
+    <h2>Ajouter une bière</h2>
+    <form class="add-form" (ngsubmit)="onSubmit()" [formGroup]="addform">
+        <mat-form-field class="add-full-width" appearance="fill">
+            <mat-label>Nom bière</mat-label>
+            <input matInput ng-model="biere.nom" formControlName="nom" [(ngModel)]="biere.nom" value="biere.nom">
+        </mat-form-field>
+        
+        <mat-form-field class="add-full-width" appearance="fill">
+            <mat-label>Brasserie</mat-label>
+            <input matInput ng-model="biere.brasserie" formControlName="brasserie">
+        </mat-form-field>
+        
+        <p>
+            <mat-form-field class="add-full-width" appearance="fill">
+                <mat-label>Description</mat-label>
+                <textarea matInput ng-model="biere.description" formControlName="description"></textarea>
+            </mat-form-field>   
+        </p>
+<!-- upload image -->
+
+<label for="file-upload" class="upload-btn">
+    <input id="file-upload"  type="file" (change)="onFileSelected($event)">
+    Choisir fichier image
+</label>
+
+        <button mat-flat-button (click)="onSubmit()" type="submit" color="primary" class="btn">Valider</button>    
+    </form>    
+    
+</div>
+

@@ -1,0 +1,12 @@
+.liste-bieres {
+    width: 90vw;
+    margin: 0 auto;
+    margin-top: 10vh;
+}
+.list-item:nth-child(2n+1) {
+   background: #ff7f5038;
+}
+.header-cell {
+    font-size: 1rem;
+    color: black;
+  }

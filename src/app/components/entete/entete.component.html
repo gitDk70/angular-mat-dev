@@ -1,0 +1,20 @@
+<mat-toolbar>
+        
+     <mat-toolbar-row class="menu-bar">
+                <!-- Ajout de bieres -->
+                <a 
+                    mat-fab routerLink="edit/0" 
+                    class="add-icon"
+                    *ngIf="hasRoute('/')">
+                    <mat-icon>add</mat-icon>
+                </a>
+                <!-- bouton retour -->
+                <a mat-button 
+                    routerLink="/" 
+                    class="add-icon"
+                    *ngIf="hasRoute('edit/0')"
+                    >Retour</a>
+     </mat-toolbar-row>
+       
+
+</mat-toolbar>

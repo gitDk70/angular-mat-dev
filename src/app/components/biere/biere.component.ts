@@ -30,7 +30,7 @@ export class BiereComponent implements OnInit {
   listBieres: ListeBieres;
   thumbnail: any;
   dataSource = new MatTableDataSource([]);
-  displayedColumns = ["image","nom","brasserie", "date_ajout", "date_modif","update", "delete"];
+  displayedColumns = ["image","nom","brasserie", "date_ajout", "date_modif", "update", "delete"];
   bieresCount: number = 0;
 
   constructor(private bieroService : ApibieroService, private router: Router) { }

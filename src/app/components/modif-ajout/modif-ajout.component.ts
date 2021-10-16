@@ -44,11 +44,11 @@ export class ModifAjoutComponent implements OnInit {
               private fb: FormBuilder, 
               private bieroService : ApibieroService,
               // pour obtenir l'id depuis l'url
-              private _router: Router,
+           
               private _route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    console.log(this._router.url);
+ 
     this.addform = new FormGroup({
       nom: new FormControl(),
       brasserie: new FormControl(),

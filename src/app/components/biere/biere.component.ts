@@ -30,7 +30,7 @@ export class BiereComponent implements OnInit {
   listBieres: ListeBieres;
   thumbnail: any;
   dataSource = new MatTableDataSource([]);
-  displayedColumns = ["image","nom","brasserie", "date_ajout", "date_modif","update"];
+  displayedColumns = ["image","nom","brasserie", "date_ajout", "date_modif","update", "delete"];
   bieresCount: number = 0;
 
   constructor(private bieroService : ApibieroService, private router: Router) { }
@@ -63,6 +63,10 @@ export class BiereComponent implements OnInit {
   }
 
   editBiere(id: number) {
+    this.router.navigate(['edit/'+id]);
+    // this.bieroService.updateBiere(id );
+  }
+  deleteBiere(id: number) {
     this.router.navigate(['edit/'+id]);
     // this.bieroService.updateBiere(id );
   }

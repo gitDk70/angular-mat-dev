@@ -1,5 +1,10 @@
 <!-- ref.:https://material.angular.io/components/input/examples -->
-        
+ <div>
+    <a mat-button 
+    routerLink="/" 
+    class="add-icon"
+    >Retour</a>
+ </div>       
 <div class="form-container">
     <h2>Ajouter une bière</h2>
     <form class="add-form" (ngsubmit)="onSubmit()" [formGroup]="addform">

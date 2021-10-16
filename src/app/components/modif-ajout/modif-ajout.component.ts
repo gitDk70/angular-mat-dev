@@ -36,6 +36,7 @@ export class ModifAjoutComponent implements OnInit {
   nom: string;
   brasserie: string;
   description: string;
+  image:string;
 
   private routeSub: Subscription;
   
@@ -47,24 +48,31 @@ export class ModifAjoutComponent implements OnInit {
               private _route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    console.log(this._router.url);
     this.addform = new FormGroup({
       nom: new FormControl(),
       brasserie: new FormControl(),
-      description: new FormControl()      
+      description: new FormControl() ,
+      image: new FormControl()      
     })
     
     this.routeSub = this._route.params.subscribe(params => {
       console.log('params',params);
       console.log('params[id_biere]',params['id_biere']);
       this.id = params['id_biere']; 
-     if(+this.id!==0) {
-
-      this.bieroService.getBiereId(this.id).subscribe((bieres: any) =>{
-      this.nom=bieres.data.nom;
-      this.brasserie=bieres.data.brasserie;
-      this.description=bieres.data.description;
-    });
-     }
+     
+        if(+this.id!==0) {
+        this.bieroService.getBiereId(this.id).subscribe((bieres: any) =>{
+            this.nom=bieres.data.nom;
+            this.brasserie=bieres.data.brasserie;
+            this.description=bieres.data.description;
+            this.image=bieres.data.image;
+            this.addform.value.nom=this.nom;
+            this.addform.value.brasserie=this.brasserie;
+            this.addform.value.description=this.description;
+            console.log(this.addform.value);
+        });
+      }
     })
     
   }

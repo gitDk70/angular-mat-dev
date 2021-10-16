@@ -5,18 +5,18 @@
     <form class="add-form" (ngsubmit)="onSubmit()" [formGroup]="addform">
         <mat-form-field class="add-full-width" appearance="fill">
             <mat-label>Nom bière</mat-label>
-            <input matInput ng-model="biere.nom" formControlName="nom" ng-Model="biere.nom" value="biere.nom">
+            <input matInput ng-model="biere.nom" [(ngModel)]="nom" formControlName="nom"  value="biere.nom">
         </mat-form-field>
         
         <mat-form-field class="add-full-width" appearance="fill">
             <mat-label>Brasserie</mat-label>
-            <input matInput ng-model="biere.brasserie" formControlName="brasserie">
+            <input matInput ng-model="biere.brasserie" [(ngModel)]="brasserie" formControlName="brasserie">
         </mat-form-field>
         
         <p>
             <mat-form-field class="add-full-width" appearance="fill">
                 <mat-label>Description</mat-label>
-                <textarea matInput ng-model="biere.description" formControlName="description"></textarea>
+                <textarea matInput ng-model="biere.description" [(ngModel)]="description" formControlName="description"></textarea>
             </mat-form-field>   
         </p>
 <!-- upload image -->

@@ -33,6 +33,10 @@ export class ModifAjoutComponent implements OnInit {
   addform: FormGroup;
   biere: Biere;
   id: number;
+  nom: string;
+  brasserie: string;
+  description: string;
+
   private routeSub: Subscription;
   
   constructor(private http: HttpClient, 
@@ -48,21 +52,21 @@ export class ModifAjoutComponent implements OnInit {
       brasserie: new FormControl(),
       description: new FormControl()      
     })
-
+    
     this.routeSub = this._route.params.subscribe(params => {
       console.log('params',params);
       console.log('params[id_biere]',params['id_biere']);
       this.id = params['id_biere']; 
-      // this.addform.value.id_biere = id;
-      
+     if(+this.id!==0) {
+
+      this.bieroService.getBiereId(this.id).subscribe((bieres: any) =>{
+      this.nom=bieres.data.nom;
+      this.brasserie=bieres.data.brasserie;
+      this.description=bieres.data.description;
+    });
+     }
     })
-    // this.reactiveForm();
-    // this._route.params.subscribe(parameterMap => {
-    //   const id = Number(parameterMap.get('id_biere')); //convertir en nombre
-      // console.log('id',id)
-      
-       
-    // })
+    
   }
 
   /* Reactive form */
@@ -77,9 +81,6 @@ export class ModifAjoutComponent implements OnInit {
 
   onSubmit(): void {
     this.addform.value.image = this.imageUrl;
-    // const body: any = this.addform.value ;
-    // const id=this.addform.value.id;
-    // console.log('id',id)
     let body: any = 
     {
       "nom": this.addform.value.nom,
@@ -87,6 +88,13 @@ export class ModifAjoutComponent implements OnInit {
       "description": this.addform.value.description,
       "image": this.addform.value.image
     }
+    // let body: any = 
+    // {
+    //   "nom": this.nom,
+    //   "brasserie": this.brasserie,
+    //   "description": this.description,
+    //   "image": ''
+    // }
     console.log(+this.id)
     if(this.id == 0) {//id=0 veut dire creation d'une nouvelle biere, ref.: https://www.youtube.com/watch?v=pkTAFaR5LRM&ab_channel=kudvenkat
       if (!body) {return;}
@@ -100,32 +108,9 @@ export class ModifAjoutComponent implements OnInit {
     }
     console.log(this.addform)
   }
-  // getBiere(id: number): void {
-  //   this.addform.value.image = this.imageUrl;
-  //   // const body: any = this.addform.value ;
-   
-  //   let body: any = 
-  //   {
-  //     "nom": this.addform.value.nom,
-  //     "brasserie": this.addform.value.brasserie,
-  //     "description": this.addform.value.description,
-  //     "image": this.addform.value.image
-  //   }
-  //   if(id===0) {//id=0 veut dire creation d'une nouvelle biere, ref.: https://www.youtube.com/watch?v=pkTAFaR5LRM&ab_channel=kudvenkat
-  //     if (!body) {return;}
-  //     this.bieroService.addBiere(body).subscribe();
-  //   }else {
+  
       
-  //     this.bieroService.getBiereId(id).subscribe((res:any)=> {
-  //       console.log(res.data);
-  //       this.biere = res.data;
-  //     });
-      
-  //   }
-  // }
-
- 
-
+  
 // Chargement des images
 
 onFileSelected(e: any) {

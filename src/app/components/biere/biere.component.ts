@@ -24,7 +24,7 @@ export class BiereComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   // @ViewChild(MatTable) table!: MatTable<ListeBieres>;
-
+  // @Input() biere: Biere;
   bieres: Biere[] = [];
   biere: Biere;
   listBieres: ListeBieres;
@@ -66,9 +66,21 @@ export class BiereComponent implements OnInit {
     this.router.navigate(['edit/'+id]);
     // this.bieroService.updateBiere(id );
   }
+  // deleteBiere(biere: Biere) {
+  //   // this.router.navigate(['edit/'+id]);
+  //   this.bieroService.deleteBiere(biere);
+  // }
   deleteBiere(id: number) {
-    this.router.navigate(['edit/'+id]);
-    // this.bieroService.updateBiere(id );
+    console.log(id);
+    // this.router.navigate(['edit/'+id]);
+    this.bieroService.deleteBiere(id).subscribe(
+      () => {
+        console.log(this.dataSource.data)
+        console.log(id)
+        this.dataSource.data = this.dataSource.data.filter((b: any) => b.id_biere !== id);
+
+        });
   }
-   
+  // this.bieroService.deleteBiere(id).subscribe(
+  //   () => (this.bieres = this.bieres.filter((b) => b.id_biere !== id)));
 }

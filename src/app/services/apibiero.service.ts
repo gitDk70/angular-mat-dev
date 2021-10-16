@@ -12,10 +12,9 @@ import { Biere } from '../Biere';
 const headers= new HttpHeaders()
     .set('content-type', 'application/json');
 
-    const httpOptions = {
-      headers: { Authorization: "Basic " + btoa("biero:biero") }
-
-    }
+const httpOptions = {
+    headers: { Authorization: "Basic " + btoa("biero:biero") }
+  }
 
 @Injectable({
   providedIn: 'root'
@@ -42,9 +41,15 @@ export class ApibieroService {
   }
   
 
-  deleteBiere(biere: Biere): Observable<Biere> {
-    const url = `${this.apiUrl}/${biere.id_biere}`;
-    return this.http.delete<Biere>(url);
+  // deleteBiere(biere: Biere): Observable<Biere> {
+  //   const url = `${this.apiUrl}/${biere.id_biere}`;
+  //   return this.http.delete<Biere>(url,httpOptions);
+  // }
+
+  deleteBiere(id: Number): Observable<Biere> {
+    const url = `${this.apiUrl}${id}`;
+    console.log(url);
+    return this.http.delete<Biere>(url,httpOptions);
   }
 
   updateBiere(biere: Biere): Observable<Biere> {

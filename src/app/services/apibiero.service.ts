@@ -54,7 +54,7 @@ export class ApibieroService {
 
   
   addBiere({nom,brasserie,description,image}: Biere): Observable<Biere> {
-    
+    console.log({nom,brasserie,description,image})
     return this.http.put<Biere>(this.apiUrl, {nom,brasserie,description,image}, httpOptions);
 
   }

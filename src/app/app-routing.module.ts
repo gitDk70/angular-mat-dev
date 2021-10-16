@@ -16,11 +16,11 @@ const routes: Routes = [
       component: ListeComponent,
      
   },
-  {
-      path: 'biere/:id_biere',
-      component: BiereComponent,
+//   {
+//       path: 'biere/:id_biere',
+//       component: BiereComponent,
      
-  },
+//   },
   {
       path: 'edit/:id_biere',
       component: ModifAjoutComponent,

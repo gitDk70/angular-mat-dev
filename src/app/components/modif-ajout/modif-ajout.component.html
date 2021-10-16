@@ -5,7 +5,7 @@
     <form class="add-form" (ngsubmit)="onSubmit()" [formGroup]="addform">
         <mat-form-field class="add-full-width" appearance="fill">
             <mat-label>Nom bière</mat-label>
-            <input matInput ng-model="biere.nom" formControlName="nom" [(ngModel)]="biere.nom" value="biere.nom">
+            <input matInput ng-model="biere.nom" formControlName="nom" ng-Model="biere.nom" value="biere.nom">
         </mat-form-field>
         
         <mat-form-field class="add-full-width" appearance="fill">

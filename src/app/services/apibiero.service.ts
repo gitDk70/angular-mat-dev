@@ -48,6 +48,7 @@ export class ApibieroService {
 
   updateBiere(biere: Biere): Observable<Biere> {
     const url = `${this.apiUrl}/${biere.id_biere}`;
+    console.log(biere);
     return this.http.put<Biere>(url, biere, httpOptions);
   }
   

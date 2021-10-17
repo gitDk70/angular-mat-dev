@@ -91,7 +91,7 @@ export class ModifAjoutComponent implements OnInit {
 }
 
   onSubmit(): void {
-    this.addform.value.image = this.imageUrl;
+    this.addform.value.image = 'https://source.unsplash.com/featured/?beer';
     let body: any = 
     {
       "nom": this.addform.value.nom,
@@ -100,7 +100,7 @@ export class ModifAjoutComponent implements OnInit {
       "image": this.addform.value.image
     }
 
-    
+    console.log(this.nom)
     if(this.id == 0) {//id=0 veut dire creation d'une nouvelle biere, ref.: https://www.youtube.com/watch?v=pkTAFaR5LRM&ab_channel=kudvenkat
       if (!body) {return;}
       this.dialogservice.openConfirmDialog('Ajouter cette bière?')
@@ -116,7 +116,8 @@ export class ModifAjoutComponent implements OnInit {
       this.dialogservice.openConfirmDialog('Modifier cette bière?')
       .afterClosed().subscribe(res =>{
         if(res){
-          this.bieroService.getBiereId(id_biere).subscribe(()=>{ this.fetchBieres()
+          console.log(body);
+          this.bieroService.updateBiere(body).subscribe(()=>{ this.fetchBieres()
           });
           this.router.navigate(['/'])         
         }

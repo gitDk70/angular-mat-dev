@@ -75,20 +75,10 @@ export class BiereComponent implements OnInit {
     this.router.navigate(['edit/'+id]);
   }
  
-  // deleteBiere(id: number) {
-  //   console.log(id);
-  //   // this.router.navigate(['edit/'+id]);
-  //   this.bieroService.deleteBiere(id).subscribe(
-  //     () => {
-  //       console.log(this.dataSource.data)
-  //       console.log(id)
-  //       this.dataSource.data = this.dataSource.data.filter((b: any) => b.id_biere !== id);
-
-  //       });
-  // }
+  
 
   deleteBiere(id: number) {
-    this.dialogservice.openConfirmDialog()
+    this.dialogservice.openConfirmDialog('Supprimer cette bière?')
     .afterClosed().subscribe(res =>{
       if(res){
         this.bieroService.deleteBiere(id).subscribe(

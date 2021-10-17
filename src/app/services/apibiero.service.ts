@@ -40,12 +40,6 @@ export class ApibieroService {
   );
   }
   
-
-  // deleteBiere(biere: Biere): Observable<Biere> {
-  //   const url = `${this.apiUrl}/${biere.id_biere}`;
-  //   return this.http.delete<Biere>(url,httpOptions);
-  // }
-
   deleteBiere(id: Number): Observable<Biere> {
     const url = `${this.apiUrl}${id}`;
     console.log(url);
@@ -56,7 +50,6 @@ export class ApibieroService {
     const url = `${this.apiUrl}/${biere.id_biere}`;
     return this.http.put<Biere>(url, biere, httpOptions);
   }
-
   
   addBiere({nom,brasserie,description,image}: Biere): Observable<Biere> {
     console.log({nom,brasserie,description,image})

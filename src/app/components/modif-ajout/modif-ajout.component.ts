@@ -99,20 +99,28 @@ export class ModifAjoutComponent implements OnInit {
       "description": this.addform.value.description,
       "image": this.addform.value.image
     }
-    // let body: any = 
-    // {
-    //   "nom": this.nom,
-    //   "brasserie": this.brasserie,
-    //   "description": this.description,
-    //   "image": ''
-    // }
+
+    
     if(this.id == 0) {//id=0 veut dire creation d'une nouvelle biere, ref.: https://www.youtube.com/watch?v=pkTAFaR5LRM&ab_channel=kudvenkat
       if (!body) {return;}
-      this.bieroService.addBiere(body).subscribe();
-      
+      this.dialogservice.openConfirmDialog('Ajouter cette bière?')
+      .afterClosed().subscribe(res =>{
+        if(res){
+          this.bieroService.addBiere(body).subscribe(()=>{ this.fetchBieres()
+          });
+          this.router.navigate(['/'])         
+        }
+      }); 
     }else {
       let id_biere = this.id;
-      this.bieroService.getBiereId(id_biere).subscribe();
+      this.dialogservice.openConfirmDialog('Modifier cette bière?')
+      .afterClosed().subscribe(res =>{
+        if(res){
+          this.bieroService.getBiereId(id_biere).subscribe(()=>{ this.fetchBieres()
+          });
+          this.router.navigate(['/'])         
+        }
+      }); 
      
     }
     
@@ -129,10 +137,12 @@ onFileSelected(e: any) {
 }
 
 suppBiere() {
-  this.dialogservice.openConfirmDialog()
+  this.dialogservice.openConfirmDialog('Supprimer cette bière?')
   .afterClosed().subscribe(res =>{
     if(res){
-      this.bieroService.deleteBiere(this.id).subscribe(); 
+      this.bieroService.deleteBiere(this.id)
+      .subscribe(()=>{ this.fetchBieres()
+      }); 
       this.router.navigate(['/'])         
     }
   });
@@ -142,4 +152,7 @@ onCancel() {
   this.router.navigate(['/'])
 }
 
+fetchBieres() {
+  this.bieroService.getBieres().subscribe();
+}
 }

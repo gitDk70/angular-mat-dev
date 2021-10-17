@@ -43,11 +43,6 @@ export class ListeComponent implements OnInit {
     }); 
   }
 
-  // searchBiere(search: string = '') {
-  //   console.log(this.dataSource.data.filter);
-  //   this.dataSource.filter = search.toLowerCase().trim();
-
-  // }
   
   // ref.: https://material.angular.io/components/sort/overview
   ngAfterViewInit() {

@@ -73,7 +73,7 @@ export class ModifAjoutComponent implements OnInit {
             this.addform.value.nom=this.nom;
             this.addform.value.brasserie=this.brasserie;
             this.addform.value.description=this.description;
-            console.log(this.addform.value);
+            
         });
       }
     })
@@ -81,14 +81,14 @@ export class ModifAjoutComponent implements OnInit {
   }
 
   /* Reactive form */
- reactiveForm() {
-  this.addform = this.fb.group({
-    nom: [''],
-    brasserie: [''],
-    description: [''],
-    image: ['']
-  })
-}
+//  reactiveForm() {
+//   this.addform = this.fb.group({
+//     nom: [''],
+//     brasserie: [''],
+//     description: [''],
+//     image: ['']
+//   })
+// }
 
   onSubmit(): void {
     this.addform.value.image = 'https://source.unsplash.com/featured/?beer';
@@ -107,8 +107,8 @@ export class ModifAjoutComponent implements OnInit {
       .afterClosed().subscribe(res =>{
         if(res){
           this.bieroService.addBiere(body).subscribe(()=>{ this.fetchBieres()
+            this.router.navigate(['/'])         
           });
-          this.router.navigate(['/'])         
         }
       }); 
     }else {
@@ -118,8 +118,8 @@ export class ModifAjoutComponent implements OnInit {
         if(res){
           console.log(body);
           this.bieroService.updateBiere(body).subscribe(()=>{ this.fetchBieres()
+            this.router.navigate(['/'])         
           });
-          this.router.navigate(['/'])         
         }
       }); 
      

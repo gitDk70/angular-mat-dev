@@ -3,9 +3,11 @@ import { Biere } from 'src/app/Biere';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApibieroService } from 'src/app/services/apibiero.service';
-import {ActivatedRoute, Route, Router} from '@angular/router';
+import { ActivatedRoute, Route, Router} from '@angular/router';
 import { RouterModule, Routes } from '@angular/router';
 import { Subscription } from 'rxjs';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { DialogService } from 'src/app/services/dialog.service';
 
 
 
@@ -44,8 +46,9 @@ export class ModifAjoutComponent implements OnInit {
               private fb: FormBuilder, 
               private bieroService : ApibieroService,
               // pour obtenir l'id depuis l'url
-           
-              private _route: ActivatedRoute) {}
+              private _route: ActivatedRoute,
+              private dialogservice: DialogService,
+              private router: Router) {}
 
   ngOnInit(): void {
  
@@ -103,18 +106,16 @@ export class ModifAjoutComponent implements OnInit {
     //   "description": this.description,
     //   "image": ''
     // }
-    console.log(+this.id)
     if(this.id == 0) {//id=0 veut dire creation d'une nouvelle biere, ref.: https://www.youtube.com/watch?v=pkTAFaR5LRM&ab_channel=kudvenkat
       if (!body) {return;}
-      console.log(this.addform.value);
       this.bieroService.addBiere(body).subscribe();
+      
     }else {
       let id_biere = this.id;
-      this.bieroService.getBiereId(id_biere).subscribe((data)=> {
-        console.log(data);
-      });
+      this.bieroService.getBiereId(id_biere).subscribe();
+     
     }
-    console.log(this.addform)
+    
   }
   
       
@@ -125,6 +126,20 @@ onFileSelected(e: any) {
   this.uploadedFile = <File> e.target.files[0];
   this.imageUrl = this.uploadedFile.name;
  
+}
+
+suppBiere() {
+  this.dialogservice.openConfirmDialog()
+  .afterClosed().subscribe(res =>{
+    if(res){
+      this.bieroService.deleteBiere(this.id).subscribe(); 
+      this.router.navigate(['/'])         
+    }
+  });
+}
+
+onCancel() {
+  this.router.navigate(['/'])
 }
 
 }

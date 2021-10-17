@@ -40,7 +40,7 @@ export class ModifAjoutComponent implements OnInit {
   description: string;
   image:string;
 
-  private routeSub: Subscription;
+  private routeSub: Subscription; //utilisee en ligne 63 pour extraire id de l'url
   
   constructor(private http: HttpClient, 
               private fb: FormBuilder, 
@@ -59,11 +59,10 @@ export class ModifAjoutComponent implements OnInit {
       image: new FormControl()      
     })
     
+    //l'id vient de l'url
     this.routeSub = this._route.params.subscribe(params => {
-      console.log('params',params);
-      console.log('params[id_biere]',params['id_biere']);
-      this.id = params['id_biere']; 
-     
+    this.id = params['id_biere']; 
+     //si update, recupérer la biere
         if(+this.id!==0) {
         this.bieroService.getBiereId(this.id).subscribe((bieres: any) =>{
             this.nom=bieres.data.nom;
@@ -83,7 +82,7 @@ export class ModifAjoutComponent implements OnInit {
  
 
   onSubmit(): void {
-    this.addform.value.image = 'https://source.unsplash.com/featured/?beer';
+    this.addform.value.image = 'https://source.unsplash.com/featured/?beer'; //image aleatoire
     let body: any = 
     {
       "nom": this.addform.value.nom,

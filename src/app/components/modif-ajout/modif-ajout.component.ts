@@ -116,8 +116,7 @@ export class ModifAjoutComponent implements OnInit {
       this.dialogservice.openConfirmDialog('Modifier cette bière?')
       .afterClosed().subscribe(res =>{
         if(res){
-          console.log(body);
-          this.bieroService.updateBiere(body).subscribe(()=>{ this.fetchBieres()
+          this.bieroService.updateBiere(body,id_biere).subscribe(()=>{ this.fetchBieres()
             this.router.navigate(['/'])         
           });
         }

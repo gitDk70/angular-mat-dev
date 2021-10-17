@@ -80,15 +80,7 @@ export class ModifAjoutComponent implements OnInit {
     
   }
 
-  /* Reactive form */
-//  reactiveForm() {
-//   this.addform = this.fb.group({
-//     nom: [''],
-//     brasserie: [''],
-//     description: [''],
-//     image: ['']
-//   })
-// }
+ 
 
   onSubmit(): void {
     this.addform.value.image = 'https://source.unsplash.com/featured/?beer';
@@ -100,8 +92,8 @@ export class ModifAjoutComponent implements OnInit {
       "image": this.addform.value.image
     }
 
-    console.log(this.nom)
-    if(this.id == 0) {//id=0 veut dire creation d'une nouvelle biere, ref.: https://www.youtube.com/watch?v=pkTAFaR5LRM&ab_channel=kudvenkat
+    if(this.id == 0) {
+      //id=0 veut dire creation d'une nouvelle biere, ref.: https://www.youtube.com/watch?v=pkTAFaR5LRM&ab_channel=kudvenkat
       if (!body) {return;}
       this.dialogservice.openConfirmDialog('Ajouter cette bière?')
       .afterClosed().subscribe(res =>{
@@ -112,6 +104,7 @@ export class ModifAjoutComponent implements OnInit {
         }
       }); 
     }else {
+      //id!=0 veut dire un update
       let id_biere = this.id;
       this.dialogservice.openConfirmDialog('Modifier cette bière?')
       .afterClosed().subscribe(res =>{
@@ -152,6 +145,7 @@ onCancel() {
   this.router.navigate(['/'])
 }
 
+//recharger la liste des bieres apres une operation CUD
 fetchBieres() {
   this.bieroService.getBieres().subscribe();
 }

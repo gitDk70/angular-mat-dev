@@ -46,10 +46,10 @@ export class ApibieroService {
     return this.http.delete<Biere>(url,httpOptions);
   }
 
-  updateBiere(biere: Biere,id_biere: Number): Observable<Biere> {
+  updateBiere(biere: Biere,id_biere: Number): Observable<void> {
     const url = `${this.apiUrl}${id_biere}`;
     console.log(biere);
-    return this.http.post<Biere>(url, biere, httpOptions);
+    return this.http.post<void>(url, biere, httpOptions);
   }
   
   addBiere({nom,brasserie,description,image}: Biere): Observable<Biere> {

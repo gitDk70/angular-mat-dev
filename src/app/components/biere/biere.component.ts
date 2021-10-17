@@ -35,9 +35,8 @@ export class BiereComponent implements OnInit {
   dataSource = new MatTableDataSource([]);
   displayedColumns = ["image","nom","brasserie", "date_ajout", "date_modif", "update", "delete"];
   bieresCount: number = 0;
-  //variables de la boite de dialogue
-  confirm: string ='';
-  cancel: string = '';
+
+  
   
   constructor(private bieroService : ApibieroService, 
     private router: Router, 

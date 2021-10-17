@@ -5,6 +5,7 @@ import { ApibieroService } from 'src/app/services/apibiero.service';
 import {AfterViewInit, ViewChild} from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 
 import { Biere } from 'src/app/Biere';
@@ -13,6 +14,8 @@ import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
+import { BoiteConfirmationComponent } from 'src/app/boite-confirmation/boite-confirmation.component';
+
 
 
 @Component({
@@ -32,9 +35,23 @@ export class BiereComponent implements OnInit {
   dataSource = new MatTableDataSource([]);
   displayedColumns = ["image","nom","brasserie", "date_ajout", "date_modif", "update", "delete"];
   bieresCount: number = 0;
-
-  constructor(private bieroService : ApibieroService, private router: Router) { }
-
+  //variables de la boite de dialogue
+  confirm: string ='';
+  cancel: string = '';
+  
+  constructor(private bieroService : ApibieroService, private router: Router, public dialog: MatDialog) { }
+  
+  //Boite de dialogue de confirmation de suppresion
+  openDialog(): void {
+  const dialogRef = this.dialog.open(BoiteConfirmationComponent, {
+    height: '200px',
+    width: '300px',
+  });
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
+    this.confirm = result;
+  });
+}
   
   ngOnInit(): void {
     let objectURL: any;

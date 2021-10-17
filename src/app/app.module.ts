@@ -30,6 +30,7 @@ import { ListeComponent } from './components/liste/liste.component';
 import { ModifAjoutComponent } from './components/modif-ajout/modif-ajout.component';
 import { MessageComponent } from './components/message/message.component';
 import { DevTableComponent } from './dev-table/dev-table.component';
+import { BoiteConfirmationComponent } from './boite-confirmation/boite-confirmation.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { DevTableComponent } from './dev-table/dev-table.component';
     ListeComponent,
     ModifAjoutComponent,
     MessageComponent,
-    DevTableComponent
+    DevTableComponent,
+    BoiteConfirmationComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,17 @@
+
+<!-- <div mat-dialog-content> -->
+  <h4>Confirmer la suppression</h4>
+  <!-- <mat-form-field appearance="fill">
+    <!-- <mat-label>Favorite Animal</mat-label> -->
+    <!-- <input matInput [(ngModel)]="data.confirm"> -->
+  <!-- </mat-form-field> -->
+<!-- </div> -->
+<div class="boite">
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="onNoClick()">Non</button>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="warn" [mat-dialog-close]="data.confirm" cdkFocusInitial>Oui</button>
+  </div>
+</div>
+

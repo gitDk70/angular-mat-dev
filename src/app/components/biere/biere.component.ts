@@ -14,7 +14,7 @@ import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
-import { BoiteConfirmationComponent } from 'src/app/boite-confirmation/boite-confirmation.component';
+import { DialogService } from 'src/app/services/dialog.service';
 
 
 
@@ -39,19 +39,11 @@ export class BiereComponent implements OnInit {
   confirm: string ='';
   cancel: string = '';
   
-  constructor(private bieroService : ApibieroService, private router: Router, public dialog: MatDialog) { }
+  constructor(private bieroService : ApibieroService, 
+    private router: Router, 
+    private dialogservice: DialogService) { }
   
-  //Boite de dialogue de confirmation de suppresion
-  openDialog(): void {
-  const dialogRef = this.dialog.open(BoiteConfirmationComponent, {
-    height: '200px',
-    width: '300px',
-  });
-  dialogRef.afterClosed().subscribe(result => {
-    console.log('The dialog was closed');
-    this.confirm = result;
-  });
-}
+  
   
   ngOnInit(): void {
     let objectURL: any;
@@ -81,23 +73,35 @@ export class BiereComponent implements OnInit {
 
   editBiere(id: number) {
     this.router.navigate(['edit/'+id]);
-    // this.bieroService.updateBiere(id );
   }
-  // deleteBiere(biere: Biere) {
+ 
+  // deleteBiere(id: number) {
+  //   console.log(id);
   //   // this.router.navigate(['edit/'+id]);
-  //   this.bieroService.deleteBiere(biere);
-  // }
-  deleteBiere(id: number) {
-    console.log(id);
-    // this.router.navigate(['edit/'+id]);
-    this.bieroService.deleteBiere(id).subscribe(
-      () => {
-        console.log(this.dataSource.data)
-        console.log(id)
-        this.dataSource.data = this.dataSource.data.filter((b: any) => b.id_biere !== id);
+  //   this.bieroService.deleteBiere(id).subscribe(
+  //     () => {
+  //       console.log(this.dataSource.data)
+  //       console.log(id)
+  //       this.dataSource.data = this.dataSource.data.filter((b: any) => b.id_biere !== id);
 
-        });
+  //       });
+  // }
+
+  deleteBiere(id: number) {
+    this.dialogservice.openConfirmDialog()
+    .afterClosed().subscribe(res =>{
+      if(res){
+        this.bieroService.deleteBiere(id).subscribe(
+              () => {
+                console.log(this.dataSource.data)
+                console.log(id)
+                this.dataSource.data = this.dataSource.data.filter((b: any) => b.id_biere !== id);
+        
+                });
+      }
+    });
   }
-  // this.bieroService.deleteBiere(id).subscribe(
-  //   () => (this.bieres = this.bieres.filter((b) => b.id_biere !== id)));
+
+
+ 
 }

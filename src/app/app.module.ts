@@ -29,7 +29,6 @@ import { EnteteComponent } from './components/entete/entete.component';
 import { ListeComponent } from './components/liste/liste.component';
 import { ModifAjoutComponent } from './components/modif-ajout/modif-ajout.component';
 import { MessageComponent } from './components/message/message.component';
-import { DevTableComponent } from './dev-table/dev-table.component';
 import { BoiteConfirmationComponent } from './boite-confirmation/boite-confirmation.component';
 
 
@@ -41,7 +40,6 @@ import { BoiteConfirmationComponent } from './boite-confirmation/boite-confirmat
     ListeComponent,
     ModifAjoutComponent,
     MessageComponent,
-    DevTableComponent,
     BoiteConfirmationComponent
   ],
   imports: [

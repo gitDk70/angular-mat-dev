@@ -24,6 +24,7 @@
                 <textarea matInput ng-model="description"  formControlName="description" value={{description}}></textarea>
             </mat-form-field>   
         </p>
+
 <!-- upload image -->
 
 <label for="file-upload" class="upload-btn">
@@ -31,7 +32,7 @@
     Choisir fichier image
 </label>
 
-        <!-- <button mat-flat-button (click)="onSubmit()" type="submit" color="primary" class="btn">Valider</button>     -->
+       
         <div class="buttons-container">
             <button mat-stroked-button (click)="onSubmit()" type="submit" color="primary" class="btn-small">Valider</button>
             <button mat-stroked-button (click)="onCancel()" type="submit"  class="btn-small">Annuler</button>

@@ -28,7 +28,6 @@ import { BiereComponent } from './components/biere/biere.component';
 import { EnteteComponent } from './components/entete/entete.component';
 import { ListeComponent } from './components/liste/liste.component';
 import { ModifAjoutComponent } from './components/modif-ajout/modif-ajout.component';
-import { MessageComponent } from './components/message/message.component';
 import { BoiteConfirmationComponent } from './boite-confirmation/boite-confirmation.component';
 
 
@@ -39,7 +38,6 @@ import { BoiteConfirmationComponent } from './boite-confirmation/boite-confirmat
     EnteteComponent,
     ListeComponent,
     ModifAjoutComponent,
-    MessageComponent,
     BoiteConfirmationComponent
   ],
   imports: [

@@ -21,7 +21,7 @@ export class ListeComponent implements OnInit {
   listBieres: ListeBieres;
   thumbnail: any;
   dataSource = new MatTableDataSource([]);
-  displayedColumns = ["image","nom","brasserie", "date_ajout", "date_modif"];
+  displayedColumns = ["image","nom","brasserie", "date_ajout", "date_modif"]; //tableau material
   bieresCount: number = 0;
 
   constructor(private bieroService : ApibieroService, private sanitizer: DomSanitizer) { }
@@ -29,18 +29,12 @@ export class ListeComponent implements OnInit {
  
  
   ngOnInit(): void {
+    //remplir le tableau au depart
+
     let objectURL: any;
     this.bieroService.getBieres().subscribe((bieres: any) =>{ 
-      
       this.dataSource.data = bieres.data;
-      this.dataSource.data.map((im: any) =>{
-        objectURL =   im.image;
-        // this.thumbnail = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-        // im.image=this.thumbnail;
-        im.image=objectURL;
-        this.bieresCount=this.dataSource.data.length
-      });
-    }); 
+     }); 
   }
 
   

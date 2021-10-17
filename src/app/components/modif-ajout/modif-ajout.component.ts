@@ -35,11 +35,14 @@ export class ModifAjoutComponent implements OnInit {
   addform: FormGroup;
   biere: Biere;
   id: number;
-  nom: string;
-  brasserie: string;
-  description: string;
+  // nom: string;
+  // brasserie: string;
+  // description: string;
   image:string;
-
+  dataBiere: Biere;
+  @Input() nom:string;
+  @Input() brasserie:string;
+  @Input() description:string;
   private routeSub: Subscription; //utilisee en ligne 63 pour extraire id de l'url
   
   constructor(private http: HttpClient, 
@@ -105,10 +108,13 @@ export class ModifAjoutComponent implements OnInit {
     }else {
       //id!=0 veut dire un update
       let id_biere = this.id;
+    
       this.dialogservice.openConfirmDialog('Modifier cette bière?')
       .afterClosed().subscribe(res =>{
         if(res){
+          //il y a un bug dans le cas ou l'on n'update pas tous les champs, les champs non updatés sont effacés
           this.bieroService.updateBiere(body,id_biere).subscribe(()=>{ this.fetchBieres()
+            //retour a la liste
             this.router.navigate(['/'])         
           });
         }
